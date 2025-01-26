@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Book</title>
+</head>
+
+<body>
+
+    <h1>Grade Book</h1>
+
+    <script>
+
+        function getAvg(score) {
+            let sum = 0;
+            for (let number of score) {
+
+                sum += number
+            }
+
+            // for (let i = 0; i <score.length; i++) {
+            //     sum += score[i]
+            // }
+            return sum / score.length
+        }
+        console.log(getAvg([92, 88, 12, 77, 57, 100, 67, 38, 97, 89]));
+
+
+
+        function getgrade(score) {
+            let grade = "";
+            if (score == 100) {
+                return "A++"
+            } else if (score >= 90) {
+                grade = "A"
+            } else if (score >= 80) {
+                grade = "B"
+            } else if (score >= 70) {
+                grade = "C"
+            } else if (score >= 60) {
+                grade = "D"
+            } else if (score >= 55) {
+                grade = "E"
+            } else if (score <= 50) {
+                grade = "F"
+            }
+            return grade;
+        }
+
+        // console.log(getgrade([92, 88, 12, 77, 57, 100, 67, 38, 97, 89]));
+
+        // console.log(getgrade([500]));      ////in this it is not exact equal to score
+        // console.log(getgrade([100]));
+        // console.log(getgrade([92]));
+        // console.log(getgrade([50]));
+        // console.log(getgrade([40]));
+        // console.log(getgrade([-5]));
+
+
+        function hasPassGrade(score) {
+
+            if (getgrade(score) !== "F") {
+                return "You Pass the Exam";
+            } else {
+                return "You failed the Exam"
+            }
+
+
+            // if (score >= 50) {
+            //     return "You Pass the Exam";
+            // } else {
+            //     return "You fail the Exam"
+            // }
+
+
+        }
+        console.log(hasPassGrade(20));
+        console.log(hasPassGrade(100));
+
+        function stdMSG(totalScore, stdScore) {
+           let msge="";
+            if (getgrade(stdScore) !== "F") {
+                msge= "You Pass the Exam";
+            } else {
+                msge= "You failed the Exam"
+            }
+            
+
+            let msg= `class average: ${getAvg(totalScore)} your score:${stdScore} ${msge}`
+            return msg;
+        }
+        console.log(stdMSG([92, 88, 12, 77, 57, 100, 67, 38, 97, 89],99));
+        console.log(stdMSG([92, 88, 12, 77, 57, 100, 67, 38, 97, 89],49));
+
+    </script>
+</body>
+
+</html>

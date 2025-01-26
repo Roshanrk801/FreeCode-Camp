@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Excel Spreadsheet</title>
+</head>
+<body>
+
+    <h2>Export Spreadsheet to Excel</h2>
+    <button id="exportBtn">Export to Excel</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+
+    <script>
+        // Function to generate a simple 5x5 spreadsheet data
+        function generateSpreadsheetData() {
+            let data = [];
+            for (let i = 0; i < 5; i++) {
+                let row = [];
+                for (let j = 0; j < 5; j++) {
+                    // Adding random data to the cells
+                    row.push(`Row ${i+1}, Col ${j+1}`);
+                }
+                data.push(row);
+            }
+            return data;
+        }
+
+        // Function to export the data to Excel
+        function exportToExcel() {
+            const ws_data = generateSpreadsheetData(); // Get the data
+            const ws = XLSX.utils.aoa_to_sheet(ws_data); // Convert the data to a worksheet
+            const wb = XLSX.utils.book_new(); // Create a new workbook
+            XLSX.utils.book_append_sheet(wb, ws, "Sheet1"); // Append the worksheet to the workbook
+            XLSX.writeFile(wb, "spreadsheet.xlsx"); // Download the Excel file
+        }
+
+        // Add event listener to the export button
+        document.getElementById('exportBtn').addEventListener('click', exportToExcel);
+    </script>
+
+</body>
+</html>
